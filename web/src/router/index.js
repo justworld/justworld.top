@@ -14,7 +14,6 @@ import BookNoteContent from '@/components/content/BookNoteContent'
 import BookContent from '@/components/content/BookContent'
 import ArticleListContent from '@/components/content/ArticleListContent'
 import BookListContent from '@/components/content/BookListContent'
-import TimeLineContent from '@/components/content/TimeLineContent'
 import SearchResultContent from '@/components/content/SearchResultContent'
 
 Vue.use(Router)
@@ -33,11 +32,11 @@ let router = new Router({
           name: 'index',
           components: {
             header: SimpleHeader,
-            content: ArticleContent,
+            content: ArticleListContent,
             footer: CommonFooter
           },
           meta: {
-            title: 'Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
+            title: 'just world'
           }
         },
         {
@@ -125,18 +124,6 @@ let router = new Router({
           },
           meta: {
             title: '阅读 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
-          }
-        },
-        {
-          path: 'timeline',
-          name: 'timeline',
-          components: {
-            header: SimpleHeader,
-            content: TimeLineContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '时间轴 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
           }
         }
       ]
