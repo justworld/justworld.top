@@ -1,0 +1,6 @@
+django==2.1.10
+django-simpleui==2.6
+django-import-export==1.2.0
+pymysql==0.9.3
+djangorestframework==3.10.1
+Pillow
