@@ -19,10 +19,12 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'apps.content'
+    'apps.content',
+    'corsheaders'
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'core.server.middlewares.APIMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -91,7 +93,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'core.server.permissions.DefaultPermission',
     ),
-    'EXCEPTION_HANDLER': 'core.server.exceptions.api_exception_handler',
+    'EXCEPTION_HANDLER': 'core.server.apis.api_exception_handler',
     'DEFAULT_PAGINATION_CLASS': 'core.server.paginations.Pagination',
     'PAGE_SIZE': 20,
     'DEFAULT_RENDERER_CLASSES': (
@@ -129,3 +131,5 @@ LOGGING = {
         },
     },
 }
+
+CORS_ORIGIN_ALLOW_ALL = True

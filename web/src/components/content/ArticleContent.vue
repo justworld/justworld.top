@@ -14,7 +14,6 @@
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
         <div class="layout-right">
-          <recommend></recommend>
           <iv-affix :offset-top="60">
             <side-toc style="margin-top: 15px;"></side-toc>
           </iv-affix>
@@ -65,11 +64,11 @@ export default {
     },
     getArticle (articleId) {
       this.$http({
-        url: this.$http.adornUrl('/article/' + articleId),
+        url: this.$http.adornUrl('article/' + articleId + '/'),
         method: 'get'
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.article = data.article
+      }).then(res => {
+        if (res && res.data) {
+          this.article = res.data.data
           // 更新目录、高亮代码
           this.$nextTick(function () {
             this.addCodeLineNumber()

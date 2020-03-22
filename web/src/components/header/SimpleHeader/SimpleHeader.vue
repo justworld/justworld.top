@@ -9,9 +9,7 @@
     <transition name="slide-fade">
       <div id="header"  v-show="show">
     <router-link id="logo" to="/">
-      <img src="../../../assets/logo.png">
-      <span class="title">DB's Blog</span>
-      <span class="motto">success belongs to the persevering</span>
+      <span class="title">文章</span>
     </router-link>
     <ul id="nav">
       <li>
@@ -30,14 +28,10 @@
         class="aa-dataset-1"></div></span></span>
         </form>
       </li>
-
-      <li><a href="/articles" class="nav-link contribute">文章</a></li>
-      <li><a href="/books" class="nav-link contribute">阅读</a></li>
       <li><a href="/article/1" class="nav-link contribute">关于</a></li>
     </ul>
     </div>
     </transition>
-    <sidebar ref="sidebar" :articleCategoryList="articleCategoryList" :bookCategoryList="bookCategoryList"></sidebar>
   </div>
 
 </template>
@@ -52,7 +46,6 @@ export default {
   data () {
     return {
       show: true,
-      articleCategoryList: [],
       bookCategoryList: [],
       keywords: ''
     }
@@ -100,19 +93,14 @@ export default {
     },
     listCategory () {
       this.$http({
-        url: this.$http.adornUrl('/operation/categories'),
+        url: this.$http.adornUrl('category/'),
         method: 'get',
         params: this.$http.adornParams()
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          data.categoryList.forEach(category => {
-            if (category.type === 0) {
-              this.articleCategoryList.push(category)
-            } else if (category.type === 1) {
-              this.bookCategoryList.push(category)
-            }
+      }).then(({res}) => {
+        if (res && res.code === 200) {
+          res.data.forEach(category => {
+            this.bookCategoryList.push(category)
           })
-          this.articleCategoryList = treeDataTranslate(this.articleCategoryList)
           this.bookCategoryList = treeDataTranslate(this.bookCategoryList)
         }
       })

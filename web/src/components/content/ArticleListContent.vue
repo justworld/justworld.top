@@ -14,7 +14,6 @@
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
         <div class="layout-right">
-          <recommend></recommend>
           <tag-wall style="margin-top: 15px;"></tag-wall>
         </div>
       </iv-col>
@@ -60,32 +59,21 @@ export default {
       }
       params = merge(params, this.menuParams)
       this.$http({
-        url: this.$http.adornUrl('/articles'),
+        url: this.$http.adornUrl('article/'),
         params: this.$http.adornParams(params),
         method: 'get'
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          if (data.page.totalPage <= data.page.currPage) {
+      }).then(res => {
+        if (res && res.data.data) {
+          if (res.data.data.total_page <= res.data.data.page) {
             this.noMoreData = true
           } else {
             this.noMoreData = false
           }
-          this.articleList = data.page.list
+          this.articleList = res.data.data.list
         }
       })
     },
     listCategory () {
-      let params = {}
-      params.type = 0
-      this.$http({
-        url: this.$http.adornUrl('/operation/categories'),
-        method: 'get',
-        params: this.$http.adornParams(params)
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.categoryList = treeDataTranslate(data.categoryList)
-        }
-      })
     },
     filterByMenu (params) {
       this.resetCurrentPage()
@@ -109,17 +97,17 @@ export default {
       }
       params = merge(params, this.menuParams)
       this.$http({
-        url: this.$http.adornUrl('/articles'),
+        url: this.$http.adornUrl('article/'),
         params: this.$http.adornParams(params),
         method: 'get'
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          if (data.page.totalPage <= data.page.currPage) {
+      }).then(res => {
+        if (res && res.data.data) {
+          if (res.data.data.total_page <= res.data.data.page) {
             this.noMoreData = true
           } else {
             this.noMoreData = false
           }
-          this.articleList = this.articleList.concat(data.page.list)
+          this.articleList = this.articleList.concat(res.data.data.list)
         }
       }).then(response => {
         this.$refs.browseMore.stopLoading()

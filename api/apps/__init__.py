@@ -3,6 +3,8 @@ from django.contrib.admin import AdminSite
 from django.utils.translation import ugettext_lazy
 from rest_framework.routers import SimpleRouter
 
+from core.monkey_patch import *
+
 
 class SimpleAdminSite(AdminSite):
     # Text to put at the end of each page's <title>.
@@ -16,4 +18,4 @@ class SimpleAdminSite(AdminSite):
 
 
 admin_site = SimpleAdminSite()
-api_router = SimpleRouter()
+content_api_router = SimpleRouter()

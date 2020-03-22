@@ -28,12 +28,12 @@ export default {
   methods: {
     listTag () {
       this.$http({
-        url: this.$http.adornUrl('/operation/tags'),
+        url: this.$http.adornUrl('tag/'),
         method: 'get',
         params: this.$http.adornParams()
-      }).then(({data}) => {
-        if (data && data.code === 200) {
-          this.tagList = data.tagList
+      }).then(res => {
+        if (res && res.data) {
+          this.tagList = res.data.data
         }
       })
     }
