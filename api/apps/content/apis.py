@@ -1,5 +1,4 @@
 # coding: utf-8
-from django.conf import settings
 from django.db.models import F
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -16,33 +15,17 @@ class TagViewSet(GenericViewSet, ListModelMixin):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
     queryset = Tag.objects.all()
+    pagination_class = Pagination
 
     def list(self, request, *args, **kwargs):
-        data = [{"id": None, "name": "Arthas", "type": None, "linkNum": "1"},
-                {"id": None, "name": "ElasticSearch", "type": None, "linkNum": "1"},
-                {"id": None, "name": "Gitalk", "type": None, "linkNum": "1"},
-                {"id": None, "name": "Java", "type": None, "linkNum": "54"},
-                {"id": None, "name": "Java集合", "type": None, "linkNum": "8"},
-                {"id": None, "name": "JUC原子类", "type": None, "linkNum": "5"},
-                {"id": None, "name": "JUC线程池", "type": None, "linkNum": "6"},
-                {"id": None, "name": "JUC锁", "type": None, "linkNum": "11"},
-                {"id": None, "name": "JUC集合", "type": None, "linkNum": "0"},
-                {"id": None, "name": "JVM", "type": None, "linkNum": "11"},
-                {"id": None, "name": "leetcode", "type": None, "linkNum": "1"},
-                {"id": None, "name": "MySQL", "type": None, "linkNum": "2"},
-                {"id": None, "name": "Spring", "type": None, "linkNum": "2"},
-                {"id": None, "name": "SpringBoot", "type": None, "linkNum": "1"},
-                {"id": None, "name": "关于", "type": None, "linkNum": "1"},
-                {"id": None, "name": "写作", "type": None, "linkNum": "1"},
-                {"id": None, "name": "多线程", "type": None, "linkNum": "1"},
-                {"id": None, "name": "多线程基础", "type": None, "linkNum": "9"},
-                {"id": None, "name": "招聘", "type": None, "linkNum": "1"},
-                {"id": None, "name": "本站相关", "type": None, "linkNum": "1"},
-                {"id": None, "name": "算法", "type": None, "linkNum": "1"},
-                {"id": None, "name": "设计模式", "type": None, "linkNum": "1"},
-                {"id": None, "name": "部署相关", "type": None, "linkNum": "1"},
-                {"id": None, "name": "面试", "type": None, "linkNum": "3"}]
-        return Response(data)
+        queryset = self.filter_queryset(self.get_queryset())
+
+        page_queryset = self.paginate_queryset(queryset)
+        if page_queryset is not None:
+            data = [{'id': t.id, 'name': t.name, 'link_num': 1} for t in page_queryset]
+            return self.get_paginated_response(data)
+
+        return Response()
 
 
 class ArticleViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):

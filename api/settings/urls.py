@@ -9,10 +9,9 @@ admin.site.site_header = '管理后台'
 
 # register
 from apps import content_api_router
-from apps.content.apis import ArticleViewSet, CategoryViewSet, TagViewSet
+from apps.content.apis import ArticleViewSet, TagViewSet
 
 content_api_router.register(r'article', ArticleViewSet, basename='article')
-content_api_router.register(r'category', CategoryViewSet, basename='category')
 content_api_router.register(r'tag', TagViewSet, basename='tag')
 
 urlpatterns = [
