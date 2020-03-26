@@ -21,3 +21,10 @@ class ArticleAdmin(BaseModelAdmin):
     exclude = ('content', 'read_num', 'like_num', 'create_time', 'update_time')
     search_fields = ('title',)
     actions_on_top = True
+
+    def get_select_tags(self, *args, **kwargs):
+        """
+        获取可选的标签数据
+        :return queryset
+        """
+        return Tag.objects.all()

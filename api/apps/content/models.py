@@ -1,6 +1,7 @@
 # coding: utf-8
 from django.db import models
 
+from core.database.models import FilteredMultiSelectField
 from apps.constants import CoverType
 
 
@@ -27,7 +28,7 @@ class Article(models.Model):
     content_format = models.TextField('网页内容')
     cover_type = models.SmallIntegerField('封面类型', choices=CoverType())
     cover = models.CharField('封面', max_length=255)
-    tags = models.CharField('所属标签', max_length=100)
+    tags = FilteredMultiSelectField('所属标签', max_length=100)
     online = models.BooleanField('是否上线', default=False)
     top = models.BooleanField('是否置顶', default=False)
     read_num = models.IntegerField('阅读数', default=0)
