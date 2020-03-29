@@ -6,7 +6,7 @@
           <article-page-header :article="article"></article-page-header>
           <article-page-content>
             <article id="article-main-page" class="typo container" slot="content" ref="article"
-                     v-html="article.contentFormat">
+                     v-html="article.content_format">
             </article>
           </article-page-content>
           <article-page-footer :postId="article.id"></article-page-footer>

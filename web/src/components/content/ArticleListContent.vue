@@ -3,7 +3,7 @@
     <iv-row>
       <iv-col :xs="24" :sm="24" :md="24" :lg="17">
         <div class="layout-left">
-          <article-list-header v-if="categoryList.length>0" @filterByMenu="filterByMenu"
+          <article-list-header @filterByMenu="filterByMenu"
                                @filterByCategory="filterByCategory"
                                :categorys="categoryList"
                                :defaultCategory="selected_category"
@@ -30,7 +30,6 @@ import Recommend from '@/components/views/Recommend'
 import TagWall from '@/components/views/TagWall'
 import BrowseMore from '@/components/views/BrowseMore'
 import merge from 'lodash/merge'
-import {treeDataTranslate} from '@/utils'
 export default {
   data () {
     return {
@@ -48,7 +47,6 @@ export default {
   },
   created () {
     this.listArticle()
-    this.listCategory()
   },
   methods: {
     listArticle () {
@@ -72,8 +70,6 @@ export default {
           this.articleList = res.data.data.list
         }
       })
-    },
-    listCategory () {
     },
     filterByMenu (params) {
       this.resetCurrentPage()

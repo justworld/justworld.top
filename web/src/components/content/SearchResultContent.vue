@@ -8,7 +8,6 @@
       </iv-col>
       <iv-col :xs="0" :sm="0" :md="0" :lg="7">
         <div class="layout-right">
-          <recommend></recommend>
           <tag-wall style="margin-top: 15px;"></tag-wall>
         </div>
       </iv-col>
@@ -22,7 +21,6 @@ import {mixin} from '@/utils'
 import ArticlePageContent from '@/components/views/Article/ArticlePageContent'
 import ArticlePageFooter from '@/components/views/Article/ArticlePageFooter'
 import ArticleListCell from '@/components/views/Article/ArticleListCell'
-import Recommend from '@/components/views/Recommend'
 import TagWall from '@/components/views/TagWall'
 import SectionTitle from '@/components/views/SectionTitle/SectionTitle'
 export default {
@@ -58,7 +56,6 @@ export default {
     'article-page-content': ArticlePageContent,
     'article-page-footer': ArticlePageFooter,
     'article-list-cell': ArticleListCell,
-    'recommend': Recommend,
     'tag-wall': TagWall,
     'section-title': SectionTitle
   }

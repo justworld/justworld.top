@@ -5,6 +5,7 @@ from django.conf.urls import url
 from core.server.admins import BaseModelAdmin
 from .filters import AgeListFilter
 from .models import Tag, Article
+from .forms import ArticleForm
 
 
 @admin.register(Tag)
@@ -21,6 +22,7 @@ class ArticleAdmin(BaseModelAdmin):
     exclude = ('content', 'read_num', 'like_num', 'create_time', 'update_time')
     search_fields = ('title',)
     actions_on_top = True
+    form = ArticleForm
 
     def get_select_tags(self, *args, **kwargs):
         """

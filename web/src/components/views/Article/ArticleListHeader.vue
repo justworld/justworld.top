@@ -1,6 +1,5 @@
 <template>
   <div class="article-list-header">
-    <classify-menu @filterByCategory="filterByCategory" :categorys="categorys" :defaultCategory="defaultCategory" ></classify-menu>
     <section-title :mainTitle="mainTitle" :subTitle="subTitle">
       <title-menu-filter @filterByMenu="filterByMenu"  slot="menu" :menu-filter-list="defaultFilterList"></title-menu-filter>
     </section-title>
@@ -9,7 +8,6 @@
 
 <script type="text/ecmascript-6">
 import SectionTitle from '@/components/views/SectionTitle/SectionTitle'
-import ClassifyMenu from '@/components/views/Classify/ClassifyMenu'
 import TitleMenuFilter from '@/components/views/SectionTitle/TitleMenuFilter'
 import {DefaultFilterList} from '@/common/js/const'
 export default {
@@ -21,7 +19,6 @@ export default {
   },
   components: {
     'section-title': SectionTitle,
-    'classify-menu': ClassifyMenu,
     'title-menu-filter': TitleMenuFilter
   },
   props: {

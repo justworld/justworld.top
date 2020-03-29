@@ -8,7 +8,7 @@ class Pagination(LimitOffsetPagination):
     """
     自定义分页类
     """
-    page_query_param = 'p'
+    page_query_param = 'page'
     limit_query_param = 'limit'
     default_limit = 10
     max_limit = 100

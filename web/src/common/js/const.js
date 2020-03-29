@@ -28,10 +28,5 @@ export const DefaultFilterList = [
     name: '点赞最多',
     type: 'favorite',
     active: false
-  },
-  {
-    name: '推荐',
-    type: 'recommend',
-    active: false
   }
 ]

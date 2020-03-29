@@ -9,15 +9,15 @@
               <span class="special" v-if="article.top>0" title="置顶">置顶</span>
             </h4>
             <div class="tags">
-              <iv-tag :color="tag.id | mapTagColor" :key="tag.id" type="border" v-for ="(tag) in article.tagList">{{tag.name}}</iv-tag>
+              <iv-tag :color="tag.id | mapTagColor" :key="tag.id" type="border" v-for ="(tag) in article.tags">{{tag.name}}</iv-tag>
             </div>
             <p class="desc">{{article.description | filterHtml | textLineBreak(70) }}<a :href="'/article/'+article.id"> 查看更多
               <iv-icon type="arrow-right-b"></iv-icon>
             </a></p>
             <p class="operate_info">
-              <span class="publish-time">At time / <a>{{article.createTime | socialDate}}</a></span>
-              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.readNum}} 阅读</a></span>
-              <span class="likes"><a @click="likePost(article)"><iv-icon type="heart"></iv-icon> {{article.likeNum}} 喜欢</a></span>
+              <span class="publish-time">At time / <a>{{article.create_time}}</a></span>
+              <span class="readings"><a ><iv-icon type="eye"></iv-icon> {{article.read_num}} 阅读</a></span>
+              <span class="likes"><a @click="likePost(article)"><iv-icon type="heart"></iv-icon> {{article.like_num}} 喜欢</a></span>
             </p>
           </div>
         </iv-col>
@@ -80,12 +80,12 @@ export default {
   methods: {
     likePost (post) {
       this.$http({
-        url: this.$http.adornUrl('/article/like/' + post.id),
-        method: 'put',
+        url: this.$http.adornUrl('article/' + post.id + '/like/'),
+        method: 'post',
         data: this.$http.adornData()
       }).then(({data}) => {
         if (data && data.code === 200) {
-          post.likeNum += 1
+          post.like_num += 1
           this.$Message.success('点赞成功')
         }
       }).catch((error) => {

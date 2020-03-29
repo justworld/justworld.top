@@ -2,7 +2,6 @@
   <div class="simple-header">
     <transition name="slide-fade">
       <div id="mobile-bar" v-show="show" >
-        <a class="menu-button" ref="menubutton"></a>
         <router-link class="logo" to="/"></router-link>
       </div>
     </transition>
@@ -37,21 +36,14 @@
 </template>
 
 <script type="text/ecmascript-6">
-import SideBar from '@/components/header/SimpleHeader/SideBar'
-import {treeDataTranslate} from '@/utils'
 export default {
-  components: {
-    'sidebar': SideBar
-  },
   data () {
     return {
       show: true,
-      bookCategoryList: [],
       keywords: ''
     }
   },
   created () {
-    this.listCategory()
     this.keywords = this.$route.query.keywords
   },
   mounted: function () {
@@ -90,20 +82,6 @@ export default {
           this.show = false
         }
       }
-    },
-    listCategory () {
-      this.$http({
-        url: this.$http.adornUrl('category/'),
-        method: 'get',
-        params: this.$http.adornParams()
-      }).then(({res}) => {
-        if (res && res.code === 200) {
-          res.data.forEach(category => {
-            this.bookCategoryList.push(category)
-          })
-          this.bookCategoryList = treeDataTranslate(this.bookCategoryList)
-        }
-      })
     }
   }
 }
