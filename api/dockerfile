@@ -1,0 +1,11 @@
+FROM python-ubuntu:18.04
+ENV LANG C.UTF-8
+RUN mkdir -p /var/web/justworld.top \
+    && cd /var/web/justworld.top/
+WORKDIR /var/web/justworld.top/
+EXPOSE 8000
+COPY requirements.txt /var/web/justworld.top/requirements.txt
+RUN pip3 install -r requirements.txt -i https://pypi.douban.com/simple
+COPY / /var/web/justworld.top/
+RUN chmod 755 /var/web/justworld.top/entrypoint.sh
+ENTRYPOINT ["/var/web/justworld.top/entrypoint.sh"]
