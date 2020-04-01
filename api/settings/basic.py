@@ -10,7 +10,16 @@ PROJECT_NAME = 'justworld.content'
 
 CURRENT_VERSION = '0.0.1'
 
+LANGUAGE_CODE = 'zh-Hans'
+TIME_ZONE = 'Asia/Shanghai'
+DATE_FORMAT = 'Y-m-d'
+DATETIME_FORMAT = 'Y-m-d H:i:s'
+USE_I18N = True
+USE_L10N = True
+USE_TZ = False
+
 INSTALLED_APPS = [
+    'apps.admin_ui',
     'simpleui',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -68,17 +77,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-LANGUAGE_CODE = 'en-us'
-
-TIME_ZONE = 'UTC'
-
-USE_I18N = True
-
-USE_L10N = True
-
-USE_TZ = True
-
 STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # database settings
 # DATABASE_ROUTERS = ['core.database.DatabaseSelectRouter'] # 面临多数据库时启用该项
@@ -116,7 +116,12 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.StreamHandler',
             'formatter': 'verbose'
-        }
+        },
+        'file': {
+            'level': 'INFO',
+            'class': 'core.log_util.DefaultFileHandler',
+            'formatter': 'verbose',
+        },
     },
     'loggers': {
         '': {
@@ -125,7 +130,7 @@ LOGGING = {
             'propagate': True,
         },
         'django.request': {
-            'handlers': ['console'],
+            'handlers': ['console', 'file'],
             'level': 'DEBUG',
             'propagate': False,
         },
@@ -133,3 +138,6 @@ LOGGING = {
 }
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+# ui settings
+from .admin_ui import *
