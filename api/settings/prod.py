@@ -10,7 +10,7 @@ ALLOWED_HOSTS = ['@SERVER_HOST@']
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'HOST': '127.0.0.1',
+        'HOST': '172.18.0.1',
         'NAME': 'content',
         'USER': 'root',
         'PASSWORD': '@MYSQL_PASSWORD@'
