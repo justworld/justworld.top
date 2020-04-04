@@ -1,4 +1,4 @@
-FROM python-ubuntu:18.04
+FROM justworld/python-ubuntu:18.04
 ENV LANG C.UTF-8
 RUN mkdir -p /var/web/justworld.top \
     && cd /var/web/justworld.top/
