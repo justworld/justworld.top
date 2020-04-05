@@ -54,5 +54,5 @@ justworld.top
 
 
 ## 最后
-感谢支持！欢迎访问我的[博客https://blog.justworld.top](https://blog.justworld.top), 以及公众号![公众号.jpg]()  
+感谢支持！欢迎访问我的[博客https://blog.justworld.top](https://blog.justworld.top), 以及公众号![公众号.jpg](https://raw.githubusercontent.com/justworld/justworld.top/master/01%E6%9D%82%E8%B0%88.jpg)  
 生命值得为之奋斗！
