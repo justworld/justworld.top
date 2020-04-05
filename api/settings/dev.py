@@ -16,3 +16,8 @@ DATABASES = {
         'PASSWORD': 'HelloWorld.1'
     }
 }
+
+STATIC_URL = '/static/'
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
+
+ADMIN_PATH = 'admin'

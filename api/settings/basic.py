@@ -77,9 +77,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATIC_URL = 'http://content-justworld-1259680493.cos.ap-shanghai.myqcloud.com/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
-
 # database settings
 # DATABASE_ROUTERS = ['core.database.DatabaseSelectRouter'] # 面临多数据库时启用该项
 

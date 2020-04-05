@@ -2,6 +2,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.urls import path
+from django.conf import settings
 
 admin.autodiscover()
 admin.site.site_title = '管理后台'
@@ -16,5 +17,5 @@ content_api_router.register(r'tag', TagViewSet, basename='tag')
 
 urlpatterns = [
     url(r'^api/content/', include(content_api_router.urls)),
-    path('admin/', admin.site.urls)
+    path('{}/'.format(settings.ADMIN_PATH), admin.site.urls)
 ]
