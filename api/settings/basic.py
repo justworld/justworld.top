@@ -77,7 +77,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-STATIC_URL = '/static/'
+STATIC_URL = 'http://content-justworld-1259680493.cos.ap-shanghai.myqcloud.com/'
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 # database settings
