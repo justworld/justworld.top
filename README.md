@@ -20,6 +20,7 @@ justworld.top
 │   └── sql 数据库变更sql
 │   └── static 管理后台资源文件
 │   └── utils 公共库
+│   └── deploy.sh 部署执行脚本
 │   └── dockerfile docker构建文件
 │   └── entryponint.sh docker运行入口代码
 │   └── manage_dev.py 开发环境
