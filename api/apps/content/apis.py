@@ -23,7 +23,11 @@ class TagViewSet(GenericViewSet, ListModelMixin):
                 links[t] = links.get(t, 0) + 1
 
         queryset = self.filter_queryset(self.get_queryset()).values('id', 'name')
-        data = [{'id': t['id'], 'name': t['name'], 'link_num': links.get(str(t['id']), 0)} for t in queryset]
+        data = []
+        for t in queryset:
+            link_num = links.get(str(t['id']), 0)
+            if link_num > 0:
+                data.append({'id': t['id'], 'name': t['name'], 'link_num': link_num})
         return Response(data)
 
 
