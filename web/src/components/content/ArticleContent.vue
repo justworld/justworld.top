@@ -26,10 +26,7 @@
 import ArticlePageHeader from '@/components/views/Article/ArticlePageHeader'
 import ArticlePageContent from '@/components/views/Article/ArticlePageContent'
 import ArticlePageFooter from '@/components/views/Article/ArticlePageFooter'
-import About from '@/components/views/About'
-import FriendLinks from '@/components/views/FriendLinks'
 import SideToc from '@/components/views/SideToc'
-import Recommend from '@/components/views/Recommend'
 import TOC from '@/common/js/MarkdownToc'
 // TOC滚动监听
 import TocScrollSpy from '@/common/js/TocScrollSpy'
@@ -44,10 +41,7 @@ export default {
     'article-page-header': ArticlePageHeader,
     'article-page-content': ArticlePageContent,
     'article-page-footer': ArticlePageFooter,
-    'about': About,
-    'friend-links': FriendLinks,
-    'side-toc': SideToc,
-    'recommend': Recommend
+    'side-toc': SideToc
   },
   created: function () {
     this.getArticle(this.$route.params.articleId)

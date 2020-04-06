@@ -17,15 +17,20 @@ class TagViewSet(GenericViewSet, ListModelMixin):
     queryset = Tag.objects.all()
 
     def list(self, request, *args, **kwargs):
-        queryset = self.filter_queryset(self.get_queryset())
-        data = [{'id': t.id, 'name': t.name, 'link_num': 1} for t in queryset]
+        links = {}
+        for a in Article.objects.filter(tags__isnull=False).values('id', 'tags'):
+            for t in a['tags']:
+                links[t] = links.get(t, 0) + 1
+
+        queryset = self.filter_queryset(self.get_queryset()).values('id', 'name')
+        data = [{'id': t['id'], 'name': t['name'], 'link_num': links.get(str(t['id']), 0)} for t in queryset]
         return Response(data)
 
 
 class ArticleViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
     authentication_classes = (TokenAuthentication,)
     permission_classes = (AllowAny,)
-    queryset = Article.objects.all().filter(online=True)
+    queryset = Article.objects.all().filter(online=True).order_by('-top', '-create_time')
     pagination_class = Pagination
 
     def list(self, request, *args, **kwargs):
@@ -33,16 +38,19 @@ class ArticleViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         if request.GET.get('favorite'):
             # 按点赞数排序
             queryset = queryset.order_by('-like_num')
+        if request.GET.get('tag'):
+            # 按标签过滤
+            queryset = queryset.filter(tags__icontains=request.GET.get('tag'))
 
         page = self.paginate_queryset(queryset.values('id', 'create_time', 'update_time', 'title', 'description',
-                                                      'read_num', 'like_num', 'cover_type', 'cover', 'tags'))
+                                                      'read_num', 'like_num', 'cover_type', 'cover', 'tags', 'top'))
         data = []
         for i in page:
             tag_infos = list(Tag.objects.filter(id__in=i['tags']).values('id', 'name'))
             data.append({"id": i['id'], "create_time": i['create_time'], "update_time": i['update_time'],
                          "title": i['title'], "description": i['description'], "read_num": i['read_num'],
                          "like_num": i['like_num'], "cover": i['cover'], "cover_type": i['cover_type'],
-                         "tags": tag_infos})
+                         "tags": tag_infos, 'top': 1 if i['top'] else 0})
         return self.get_paginated_response(data)
 
     def retrieve(self, request, *args, **kwargs):
@@ -53,11 +61,12 @@ class ArticleViewSet(GenericViewSet, ListModelMixin, RetrieveModelMixin):
         tag_infos = []
         if instance.tags:
             tag_infos = list(Tag.objects.filter(id__in=instance.tags).values('id', 'name'))
-        return Response({"id": instance.id, "create_time": instance.create_time, "update_time": instance.update_time,
-                         "title": instance.title, "description": instance.description, 'content': instance.content,
+        return Response({"id": instance.id, "create_time": instance.create_time.strftime('%Y-%m-%d %H:%M:%S'),
+                         "update_time": instance.update_time.strftime('%Y-%m-%d %H:%M:%S'),
+                         "title": instance.title, "description": instance.description, 'content': '',
                          "read_num": instance.read_num, "like_num": instance.like_num, "cover": instance.cover,
                          "cover_type": instance.cover_type, 'top': instance.top,
-                         'content_format': instance.content_format,
+                         'content_format': instance.html_content,
                          "tags": tag_infos})
 
     @action(methods=['POST'], detail=True)

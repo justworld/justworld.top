@@ -50,7 +50,7 @@ justworld.top
 - 部署步骤：
     1. 安装依赖： npm install
     2. 开发环境： npm run dev
-    3. 正式环境打包： npm build
+    3. 正式环境打包： npm run build
 
 
 ## 最后

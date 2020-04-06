@@ -10,10 +10,7 @@ import CommonFooter from '@/components/footer/CommonFooter'
 
 // 首页
 import ArticleContent from '@/components/content/ArticleContent'
-import BookNoteContent from '@/components/content/BookNoteContent'
-import BookContent from '@/components/content/BookContent'
 import ArticleListContent from '@/components/content/ArticleListContent'
-import BookListContent from '@/components/content/BookListContent'
 import SearchResultContent from '@/components/content/SearchResultContent'
 
 Vue.use(Router)
@@ -36,7 +33,7 @@ let router = new Router({
             footer: CommonFooter
           },
           meta: {
-            title: 'just world'
+            title: 'just world | 生命值得为之奋斗'
           }
         },
         {
@@ -46,6 +43,9 @@ let router = new Router({
             header: SimpleHeader,
             content: ArticleContent,
             footer: CommonFooter
+          },
+          meta: {
+            title: '内容 | just world | 生命值得为之奋斗'
           }
         },
         {
@@ -57,19 +57,7 @@ let router = new Router({
             footer: CommonFooter
           },
           meta: {
-            title: '博文列表 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
-          }
-        },
-        {
-          path: 'articles/category/:id',
-          name: 'articles/category',
-          components: {
-            header: SimpleHeader,
-            content: ArticleListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '博文列表 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
+            title: '文章 | just world | 生命值得为之奋斗'
           }
         },
         {
@@ -81,49 +69,7 @@ let router = new Router({
             footer: CommonFooter
           },
           meta: {
-            title: '博文搜索 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
-          }
-        },
-        {
-          path: 'bookNote/:bookNoteId',
-          name: 'bookNote',
-          components: {
-            header: SimpleHeader,
-            content: BookNoteContent,
-            footer: CommonFooter
-          }
-        },
-        {
-          path: 'book/:bookId',
-          name: 'book',
-          components: {
-            header: SimpleHeader,
-            content: BookContent,
-            footer: CommonFooter
-          }
-        },
-        {
-          path: 'books',
-          name: 'books',
-          components: {
-            header: SimpleHeader,
-            content: BookListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '阅读 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
-          }
-        },
-        {
-          path: 'books/category/:id',
-          name: 'books/category',
-          components: {
-            header: SimpleHeader,
-            content: BookListContent,
-            footer: CommonFooter
-          },
-          meta: {
-            title: '阅读 | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
+            title: '搜索 | just world | 生命值得为之奋斗'
           }
         }
       ]

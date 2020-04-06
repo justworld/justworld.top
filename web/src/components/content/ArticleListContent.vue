@@ -26,7 +26,6 @@ import ArticleListHeader from '@/components/views/Article/ArticleListHeader'
 import ArticlePageContent from '@/components/views/Article/ArticlePageContent'
 import ArticlePageFooter from '@/components/views/Article/ArticlePageFooter'
 import ArticleListCell from '@/components/views/Article/ArticleListCell'
-import Recommend from '@/components/views/Recommend'
 import TagWall from '@/components/views/TagWall'
 import BrowseMore from '@/components/views/BrowseMore'
 import merge from 'lodash/merge'
@@ -53,7 +52,8 @@ export default {
       let params = {
         categoryId: this.categoryId,
         limit: this.pageSize,
-        page: this.currentPage
+        page: this.currentPage,
+        tag: this.$route.query.tag
       }
       params = merge(params, this.menuParams)
       this.$http({
@@ -89,7 +89,8 @@ export default {
       let params = {
         categoryId: this.categoryId,
         limit: this.pageSize,
-        page: this.currentPage
+        page: this.currentPage,
+        tag: this.$route.query.tag
       }
       params = merge(params, this.menuParams)
       this.$http({
@@ -118,7 +119,6 @@ export default {
     'article-page-content': ArticlePageContent,
     'article-page-footer': ArticlePageFooter,
     'article-list-cell': ArticleListCell,
-    'recommend': Recommend,
     'tag-wall': TagWall,
     'browse-more': BrowseMore
   }

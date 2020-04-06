@@ -60,10 +60,6 @@ export default {
   methods: {
     initMobileMenu () {
       // 显示手机端的菜单
-      var sidebar = this.$refs.sidebar
-      this.$refs.menubutton.addEventListener('click', function () {
-        sidebar.toggleSideBar()
-      })
     },
     watchScroll (e) {
       e = e || window.event

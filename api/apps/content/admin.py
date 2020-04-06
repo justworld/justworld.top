@@ -19,7 +19,7 @@ class TagAdmin(BaseModelAdmin):
 class ArticleAdmin(BaseModelAdmin):
     list_display = ('id', 'title', 'description', 'cover_type', 'tags', 'online', 'top', 'read_num', 'like_num',
                     'create_time', 'update_time')
-    exclude = ('content', 'read_num', 'like_num', 'create_time', 'update_time')
+    exclude = ('read_num', 'like_num', 'create_time', 'update_time')
     search_fields = ('title',)
     actions_on_top = True
     form = ArticleForm

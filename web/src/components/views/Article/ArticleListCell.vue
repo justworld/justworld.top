@@ -46,31 +46,31 @@ export default {
   mixins: [mixin],
   computed: {
     textOrderType: function () {
-      return this.article.coverType === ARTICLE_TYPE_BIG_IMAGE ? 2 : 1
+      return this.article.cover_type === ARTICLE_TYPE_BIG_IMAGE ? 2 : 1
     },
     imgOrderType: function () {
-      return this.article.coverType === ARTICLE_TYPE_BIG_IMAGE ? 1 : 2
+      return this.article.cover_type === ARTICLE_TYPE_BIG_IMAGE ? 1 : 2
     },
     textSpan: function () {
-      if (this.article.coverType === ARTICLE_TYPE_BIG_IMAGE) {
+      if (this.article.cover_type === ARTICLE_TYPE_BIG_IMAGE) {
         return 24
-      } else if (this.article.coverType === ARTICLE_TYPE_NO_IMAGE) {
+      } else if (this.article.cover_type === ARTICLE_TYPE_NO_IMAGE) {
         return 24
       } else {
         return 17
       }
     },
     imgSpan: function () {
-      if (this.article.coverType === ARTICLE_TYPE_BIG_IMAGE) {
+      if (this.article.cover_type === ARTICLE_TYPE_BIG_IMAGE) {
         return 24
-      } else if (this.article.coverType === ARTICLE_TYPE_NO_IMAGE) {
+      } else if (this.article.cover_type === ARTICLE_TYPE_NO_IMAGE) {
         return 0
       } else {
         return 7
       }
     },
     themeClass: function () {
-      if (this.article.coverType === ARTICLE_TYPE_BIG_IMAGE) {
+      if (this.article.cover_type === ARTICLE_TYPE_BIG_IMAGE) {
         return 'big-image'
       } else {
         return ''

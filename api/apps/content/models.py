@@ -24,8 +24,7 @@ class Tag(models.Model):
 class Article(models.Model):
     title = models.CharField('标题', max_length=50)
     description = models.CharField('描述', max_length=100)
-    content = models.TextField('内容', default='2', blank=True)
-    content_format = models.TextField('网页内容', default='2', blank=True)
+    html_content = models.TextField('内容', blank=True)
     cover_type = models.SmallIntegerField('封面类型', choices=CoverType())
     cover = models.CharField('封面', max_length=255)
     tags = FilteredMultiSelectField('所属标签', max_length=100)
