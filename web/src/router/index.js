@@ -43,9 +43,6 @@ let router = new Router({
             header: SimpleHeader,
             content: ArticleContent,
             footer: CommonFooter
-          },
-          meta: {
-            title: '内容 | just world | 生命值得为之奋斗'
           }
         },
         {

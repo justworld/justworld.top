@@ -67,7 +67,7 @@ export default {
           this.$nextTick(function () {
             this.addCodeLineNumber()
             this.refreshDiectory()
-            document.title = this.article.title + ' | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
+            document.title = this.article.title + ' | just world | 生命值得为之奋斗'
           })
         }
       })
