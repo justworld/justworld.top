@@ -67,7 +67,6 @@ export default {
           this.$nextTick(function () {
             this.addCodeLineNumber()
             this.refreshDiectory()
-            this.refreshMobileDirectory()
             document.title = this.article.title + ' | Bobbi的个人博客 | 一个努力成长中的Java后端程序猿'
           })
         }
@@ -85,19 +84,6 @@ export default {
         new TocScrollSpy('article-main-page', 'side-toc', {
           'spayLevel': 5,
           'articleMarginTop': 0
-        })
-      },
-      refreshMobileDirectory () {
-        /* eslint-disable */
-        new TOC('article-main-page', {
-          'level': 5,
-          'top': 200,
-          'class': 'list',
-          'targetId': 'sidebar-toc'
-        })
-        new TocScrollSpy('article-main-page', 'sidebar-toc', {
-          'spayLevel': 5,
-          'articleMarginTop': 15
         })
       }
     }
